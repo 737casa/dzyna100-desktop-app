@@ -3,7 +3,7 @@
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](dzynadzyna.com/sdk/docs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](mit.url)
 
-> World's first open source sneaker bot software
+> World's first open source sneaker bot framework
 
 ### 🏠 Homepage - coming soon
 
@@ -18,12 +18,14 @@ npm install
 ## Usage
 
 ```sh
+save firebase config saved to src/firebaseConfig.ts then run
 npm run start && npm run electron:start-dev
 ```
 
 ## Run tests
 
 ```sh
+// no tests
 npm run test
 ```
 
@@ -33,7 +35,7 @@ npm run test
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!
+This is a framework for creating your own sneakerbot desktop application and running your automation scripts. It is powered by Firestore database but it can be replaced with whatever you want. This SDK is used to build the Dzyna100 Desktop App. We do not accept pull requests or respond to user requests.
 
 Feel free to check [issues page](issue.url).
 
