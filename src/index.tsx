@@ -10,24 +10,6 @@ import * as firebaseui from "firebaseui";
 import {get,post,put,del,createCrud} from "./api";
 import firebaseConfig from "./firebaseConfig";
 
-declare global {
-    interface Window {
-        puppeteer:any,
-        user:firebase.User,
-        firebase:firebase.app.App,
-        firebaseAuthUi:firebaseui.auth.AuthUI
-        firestore:firebase.firestore.Firestore
-        auth:firebase.auth.Auth
-        api: {
-            get:typeof get,
-            post:typeof post,
-            put: typeof put,
-            del: typeof del,
-            createCrud: typeof createCrud,
-        }
-    }
-}
-
 
 function initFirebase(){
     if (!firebase.apps.length){

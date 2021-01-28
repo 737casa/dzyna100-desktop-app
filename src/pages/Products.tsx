@@ -15,12 +15,8 @@ export default function Products(){
 
     const {
         get:getAccounts,
-        post:createNewAccount,
     } = window.api.createCrud("accounts",window.auth.currentUser?.email!)
 
-    const {
-        get:getPuppeteerCode,
-    } = window.api.createCrud("puppeteer",window.auth.currentUser?.email!)
 
     async function getAvailableAccount(){
         const accounts = await getAccounts()
@@ -54,7 +50,6 @@ export default function Products(){
         }
     ]
 
-    _get("puppeteer","",)().then(f => console.log(f,"whazup"))
 
     const getCode = (name:string) => async () => {
         return (await _get("puppeteer","","name","==",name)())[0].code as string

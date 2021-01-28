@@ -1,12 +1,10 @@
+/// <reference types="./window" />
 import {app, BrowserWindow, dialog, Menu} from 'electron'
 import { autoUpdater } from "electron-updater"
+import {electronLoadUrl} from "./helpers";
 
-const dev  =process.env.NODE_ENV === "development"
-const test =process.env.NODE_ENV === "test"
-const prod = process.env.NODE_ENV === "production"
-console.log(dev || test,"bluboyt")
 
-function createWindow () {
+async function createWindow () {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -15,22 +13,10 @@ function createWindow () {
             nodeIntegration: true,
         },
     })
-    console.log(process.env.NODE_ENV)
 
-    if(dev||test){
-    } else {
+    electronLoadUrl(win)
 
-        const menu = Menu.buildFromTemplate([])
-        Menu.setApplicationMenu(menu)
-    }
-
-    if(dev){
-        win.loadURL("http://localhost:3000")
-    } else if (test) {
-        win.loadURL("http://localhost:5000")
-    } else {
-        win.loadFile("build/index.html")
-    }
+    // win.loadURL("http://localhost:3000")
 }
 
 app.on('ready', function()  {

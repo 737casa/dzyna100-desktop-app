@@ -1,4 +1,5 @@
 import {Puppeteer2MethodProps} from "./lib/Puppeteer2Methods";
+import {BrowserWindow, Menu,remote} from "electron";
 
 const dev = process.env.NODE_ENV === "development"
 const prod = process.env.NODE_ENV === "production"
@@ -22,7 +23,7 @@ export async function puppeteerMethods(data:Puppeteer2MethodProps&{method:string
     }
 }
 
-
+console.log(93939339)
 export async function browserApp(data:any) {
     return prod ? `--app=${data}` : ""
 }
@@ -44,6 +45,24 @@ export async function adminMenus(){
         return Promise.resolve(true)
     }
 }
+
+export async function electronLoadUrl(win:BrowserWindow){
+
+    if(prod){
+        win.loadFile("build/index.html")
+    } else if(test) {
+        win.loadURL("http://localhost:5000")
+    } else {
+        win.loadURL("http://localhost:3000")
+    }
+}
+//
+// export async function electronSetMenu(){
+//     if(prod){
+//         const menu = Menu.buildFromTemplate([])
+//         Menu.setApplicationMenu(menu)
+//     }
+// }
 
 export function getLid(){
     return window.auth.currentUser?.email || ""
