@@ -23,7 +23,6 @@ export async function puppeteerMethods(data:Puppeteer2MethodProps&{method:string
     }
 }
 
-console.log(93939339)
 export async function browserApp(data:any) {
     return prod ? `--app=${data}` : ""
 }

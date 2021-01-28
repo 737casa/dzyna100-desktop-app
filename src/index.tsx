@@ -9,6 +9,7 @@ import "firebase/firestore"
 import * as firebaseui from "firebaseui";
 import {get,post,put,del,createCrud} from "./api";
 import firebaseConfig from "./firebaseConfig";
+import vm from "vm";
 
 
 function initFirebase(){
@@ -25,6 +26,12 @@ function initFirebaseAuthUi(){
 
 initFirebase()
 
+function random(min:number, max:number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 window.puppeteer = {};
 (window.firebase as firebase.app.App) = initFirebase()
 window.firebaseAuthUi = initFirebaseAuthUi();
@@ -33,8 +40,16 @@ window.api = {
     get,post,put,del,createCrud
 }
 window.auth = window.firebase.auth()
+window.random = random
 
-
+const codewrap = `
+    async function run(){
+        await new Promise(resolve => setTimeout(resolve, 5000))
+    }
+    run.apply(this)
+    `
+const resp = vm.runInNewContext(codewrap,vm.createContext({setTimeout,console}),{displayErrors:true,filename:"vm-error.js",timeout:5000,})
+console.log(resp,"jekk")
 
 ReactDOM.render(
   <React.StrictMode>

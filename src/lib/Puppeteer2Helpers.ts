@@ -6,6 +6,13 @@ export interface Puppeteer2HelperProps {
     product: Puppeteer2ProductProps
 }
 
+const d = (t:number) => new Promise((resolve) => {
+    setTimeout(() => {
+        console.log("geat3333")
+        resolve(true)
+    },t)
+})
+
 export default async function createPuppeteer2Helpers({page,product}:Puppeteer2HelperProps){
     const faker2 = (await import("./faker2")).default()
 
@@ -91,7 +98,11 @@ export default async function createPuppeteer2Helpers({page,product}:Puppeteer2H
                 }
             },
             async delay(time:number){
-                await page.waitForTimeout(time)
+                await d(time)
+                console.log("yep")
+                return true
+                // console.log("yess")
+                // return page.waitForTimeout(time)
             },
             exists: {
                 async text({value,attr,tag}:{value:string,tag:string,attr:string}){
@@ -104,14 +115,14 @@ export default async function createPuppeteer2Helpers({page,product}:Puppeteer2H
                 },
             },
             type: {
-                async text({value,text,attr}:{value:string,text:string,attr:string}){
+                async text({value,text,attr,delay}:{value:string,text:string,attr:string,delay?:number}){
                     await page.waitForXPath(`//*[translate(@${attr}, '${value.toUpperCase()}', '${value.toLowerCase()}')='${value.toLowerCase()}']`,{visible: true});
-                    await (await page.$x(`//*[translate(@${attr}, '${value.toUpperCase()}', '${value.toLowerCase()}')='${value.toLowerCase()}']`))[0].type(text,{delay:0})
+                    await (await page.$x(`//*[translate(@${attr}, '${value.toUpperCase()}', '${value.toLowerCase()}')='${value.toLowerCase()}']`))[0].type(text,{delay:window.random(50,200)})
                 },
             },
             click: {
                 async tag({tag}:{tag:string}){
-                    await page.waitForXPath(`//${tag}`,{visible: true});
+                    await page.waitForXPath(`//${tag}`,{visible: true,});
                     await (await page.$x(`//${tag}`))[0].click()
                 },
                 async textExact({text,tag}:{tag?:string,text:string}){
@@ -134,6 +145,9 @@ export default async function createPuppeteer2Helpers({page,product}:Puppeteer2H
             press: {
                 async tab(){
                     await page.keyboard.press("Tab");
+                },
+                async enter(){
+                    await page.keyboard.press("Enter")
                 },
                 async type(text:string){
                     await page.keyboard.type(text)

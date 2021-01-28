@@ -110,6 +110,7 @@ export function createPuppeteer2({product,options,getCode}:Puppeteer2Props){
 
         const helpers = await (await import("./Puppeteer2Helpers")).default({page,product})
         const resp = puppeteerMethods({page,product,helpers,browser,getCode:getCode(method),method})
+
         delete require.cache[require.resolve("./Puppeteer2Helpers")]
         return resp
     }

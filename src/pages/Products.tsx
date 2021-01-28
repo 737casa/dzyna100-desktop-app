@@ -55,6 +55,7 @@ export default function Products(){
         return (await _get("puppeteer","","name","==",name)())[0].code as string
     }
 
+
     const cols2 = createPuppeteer2List({menus:["login","homepage","checkout"],getCode})
 
     const fields = createFields([
@@ -83,10 +84,9 @@ export default function Products(){
                 } else {
                     const {callMethod} = createPuppeteer2({product:data,options:{headless:true},getCode})
                     const r = await callMethod("getReleaseDate")
-                    console.log(r,"r matey1")
                     const {get} = await (await import("../lib/Puppeteer2Helpers")).default({product:data})
-                    // const releaseDate = get.releaseDate(r)
-                    await post({...data})
+                    const releaseDate = get.releaseDate(r)
+                    await post({...data, releaseDate})
                 }
             },
             async onEdit(data){

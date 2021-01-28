@@ -19,15 +19,35 @@ function createPuppeteer2Method(f:(props:Puppeteer2MethodProps) => Promise<any>)
     return f
 }
 
-export default createPuppeteer2Method(async ({getCode,...rest}) => {
+export default createPuppeteer2Method(async ({getCode,helpers,...rest}) => {
     const code = await getCode()
-    const context = rest
+    const {..._helpers} = helpers
+    // function delay(time:number) {
+    //     return new Promise(function(resolve) {
+    //         // @ts-ignore
+    //         setTimeout(resolve, time)
+    //     });
+    // }
+    const l = console
+    const context = {setTimeout}
+    console.log(context,code)
+    // eval("console.log(context,333)")
+    //
+    // const resp = eval( `
+    //     const {is,setTimeout,select,browser,product,page,get,faker,delay,type} = context;
+    //
+    //     (async()=>{
+    //         ${code}
+    //     })()
+    // `)
+    // return resp
+
     const codewrap = `
-        (async()=>{
-            ${code}
-        })()
+    async function run(){
+        await new Promise(resolve => setTimeout(resolve, 5000))
+    }
+    run.apply(this)
     `
-    vm.createContext(context);
-    const resp = await vm.runInNewContext(codewrap,context)
+    const resp = await vm.runInNewContext(codewrap,vm.createContext({setTimeout,console}),{displayErrors:true,filename:"vm-error.js",timeout:5000,})
     return resp
 })
