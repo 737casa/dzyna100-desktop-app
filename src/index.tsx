@@ -40,16 +40,10 @@ window.api = {
     get,post,put,del,createCrud
 }
 window.auth = window.firebase.auth()
-window.random = random
-
-const codewrap = `
-    async function run(){
-        await new Promise(resolve => setTimeout(resolve, 5000))
-    }
-    run.apply(this)
-    `
-const resp = vm.runInNewContext(codewrap,vm.createContext({setTimeout,console}),{displayErrors:true,filename:"vm-error.js",timeout:5000,})
-console.log(resp,"jekk")
+window.random = {
+    number:random,
+    bool:() => random(0,100) > 50
+}
 
 ReactDOM.render(
   <React.StrictMode>

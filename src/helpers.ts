@@ -1,5 +1,4 @@
 import {Puppeteer2MethodProps} from "./lib/Puppeteer2Methods";
-import {BrowserWindow, Menu,remote} from "electron";
 
 const dev = process.env.NODE_ENV === "development"
 const prod = process.env.NODE_ENV === "production"
@@ -38,6 +37,7 @@ export async function appTitle() {
 export async function adminMenus(){
     if(prod||test){
         return window.api.get("users","","id","==",window.auth.currentUser?.email)().then((f:any) => {
+            console.log(f[0],"boom")
             return f[0].admin
         })
     } else {
@@ -45,14 +45,13 @@ export async function adminMenus(){
     }
 }
 
-export async function electronLoadUrl(win:BrowserWindow){
-
+export async function electronLoadUrl(win:any){
     if(prod){
-        win.loadFile("build/index.html")
+        await win.loadFile("build/index.html")
     } else if(test) {
-        win.loadURL("http://localhost:5000")
+        await win.loadURL("http://localhost:5000")
     } else {
-        win.loadURL("http://localhost:3000")
+        await win.loadURL("http://localhost:3000")
     }
 }
 //

@@ -56,7 +56,7 @@ export default function Products(){
     }
 
 
-    const cols2 = createPuppeteer2List({menus:["login","homepage","checkout"],getCode})
+    const cols2 = createPuppeteer2List({menus:["productPage","loginPage","checkoutQuick"],getCode})
 
     const fields = createFields([
         "link",

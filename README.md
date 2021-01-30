@@ -3,22 +3,25 @@
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](dzynadzyna.com/sdk/docs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](mit.url)
 
-> World's first open source sneaker bot framework
+> Nike Snkrs Checkout Assistant Electron Desktop Experiment
 
-### 🏠 Homepage - coming soon
+### 🏠 Download - https://github.com/737casa/dzyna100-desktop-app/releases
 
-### ✨ Demo - coming soon
+### ✨ Demo - https://streamable.com/upsg8d
 
 ## Install
 
 ```sh
+// developers; you need Windows 10, MS Edge Browser, Firebase account
 npm install
+// users; 
+download from https://github.com/737casa/dzyna100-desktop-app/releases
 ```
 
 ## Usage
 
 ```sh
-save firebase config saved to src/firebaseConfig.ts then run
+// developers; default export firebaseConfig from src/firebaseConfig.ts
 npm run start && npm run electron:start-dev
 ```
 
@@ -35,13 +38,11 @@ npm run test
 
 ## 🤝 Contributing
 
-This is a framework for creating your own sneakerbot desktop application and running your automation scripts. It is powered by Firestore database but it can be replaced with whatever you want. This SDK is used to build the Dzyna100 Desktop App. We do not accept pull requests or respond to user requests.
-
-Feel free to check [issues page](issue.url).
+This is a experiment made for Nike Snkrs to get to checkout as fast as possible. It does not checkout automatically it just helps you get there quickly.
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ if this project helped you! or recommend the author for a good job.
 
 
 ## 📝 License

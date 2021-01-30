@@ -61,6 +61,8 @@ export default function Puppeteer(){
             <Table2
                 cols={cols}
                 get={get}
+                put={put}
+                update={true}
                 del={del}
                 post={post}
                 form={

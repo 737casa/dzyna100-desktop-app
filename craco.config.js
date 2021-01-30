@@ -7,7 +7,7 @@ module.exports = {
             externals: {
                 puppeteer: "require('puppeteer')",
                 jsdom: "require('jsdom')",
-            }
+            },
         },
     },
 };

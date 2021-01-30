@@ -4,7 +4,6 @@ require('ts-node').register({
         "paths": {
             "window" : ["./window.d.ts"]
         },
-        "typeRoots": ["./window.d.ts"],
     }
 });
 require("./electron.ts")

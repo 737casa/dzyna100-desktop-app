@@ -1,7 +1,10 @@
 /// <reference types="./window" />
 import {app, BrowserWindow, dialog, Menu} from 'electron'
 import { autoUpdater } from "electron-updater"
-import {electronLoadUrl} from "./helpers";
+
+const dev = process.env.NODE_ENV === "development"
+const prod = process.env.NODE_ENV === "production"
+const test = process.env.NODE_ENV === "test"
 
 
 async function createWindow () {
@@ -9,12 +12,23 @@ async function createWindow () {
         width: 800,
         height: 600,
         webPreferences: {
-            devTools: true,
+            devTools: dev || test,
             nodeIntegration: true,
         },
     })
 
-    electronLoadUrl(win)
+    if(prod){
+        const menu = Menu.buildFromTemplate([])
+        Menu.setApplicationMenu(menu)
+    }
+
+    if(prod){
+        await win.loadFile("build/index.html")
+    } else if(test) {
+        await win.loadURL("http://localhost:5000")
+    } else {
+        await win.loadURL("http://localhost:3000")
+    }
 
     // win.loadURL("http://localhost:3000")
 }

@@ -1,7 +1,8 @@
 {
   "name": "dzyna100-desktop-app",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "./src/electron.js",
+  "homepage": ".",
   "private": true,
   "scripts": {
     "t": "ts-node src/test.ts",
@@ -22,11 +23,10 @@
     "install:puppeteer": "cross-env PUPPETEER_PRODUCT=firefox npm i puppeteer"
   },
   "build": {
-    "compression": "store",
     "productName": "dzyna100-sdk",
     "publish": {
       "provider": "github",
-      "repo": "dzyna100-sdk-release",
+      "repo": "dzyna100-desktop-app",
       "owner": "737casa"
     }
   },

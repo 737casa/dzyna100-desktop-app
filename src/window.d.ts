@@ -17,7 +17,10 @@ declare global {
             del: typeof del,
             createCrud: typeof createCrud,
         }
-        random:(min:number,max:number) => number
+        random: {
+            number: (min:number,max:number) => number
+            bool: () => boolean
+        }
     }
 }
 

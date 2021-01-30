@@ -15,6 +15,7 @@ export default function Login(){
                       id:user.email,
                       displayName:user.displayName,
                       email:user.email,
+                      uid:user.uid,
                   })
               }
               setAuthorisation("authorised")
@@ -32,8 +33,13 @@ export default function Login(){
                        // User successfully signed in.
                        // Return type determines whether we continue the redirect automatically
                        // or whether we leave that to developer to handle.
-                       console.log(authResult)
                        setAuthorisation("authorised")
+                       window.api.createCrud("users","").post({
+                           id:authResult.user.email,
+                           displayName:authResult.user.displayName,
+                           email:authResult.user.email,
+                           uid:authResult.user.uid,
+                       })
                        return true
                    },
                    uiShown: function() {
