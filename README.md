@@ -40,6 +40,8 @@ npm run test
 
 This is a experiment made for Nike Snkrs to get to checkout as fast as possible. It does not checkout automatically it just helps you get there quickly.
 
+Download - https://github.com/737casa/dzyna100-desktop-app/releases
+
 ## Show your support
 
 Give a ⭐️ if this project helped you! or recommend the author for a good job.
