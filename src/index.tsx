@@ -9,7 +9,6 @@ import "firebase/firestore"
 import * as firebaseui from "firebaseui";
 import {get,post,put,del,createCrud} from "./api";
 import firebaseConfig from "./firebaseConfig";
-import vm from "vm";
 
 
 function initFirebase(){

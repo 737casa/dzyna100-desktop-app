@@ -1,7 +1,6 @@
 import firebase from "firebase/app"
 import {auth} from "firebaseui";
 
-
 declare global {
     export interface Window {
         puppeteer:any,

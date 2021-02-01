@@ -5,7 +5,6 @@ import createPuppeteer2Helpers from "./Puppeteer2Helpers";
 type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
 
 
-
 export interface Puppeteer2MethodProps {
     page: Page
     product: Puppeteer2ProductProps
@@ -14,11 +13,8 @@ export interface Puppeteer2MethodProps {
     getCode: () => Promise<string>
 }
 
-function createPuppeteer2Method(f:(props:Puppeteer2MethodProps) => Promise<any>){
-    return f
-}
 
-export default createPuppeteer2Method(async ({getCode,helpers,...rest}) => {
+export async function createPuppeteer2Method({getCode,helpers,...rest}:Puppeteer2MethodProps){
     const code = await getCode()
     const {..._helpers} = helpers
     const context = {...rest, ..._helpers}
@@ -30,4 +26,7 @@ export default createPuppeteer2Method(async ({getCode,helpers,...rest}) => {
         })()
     `)
     return resp
-})
+}
+
+
+export default createPuppeteer2Method

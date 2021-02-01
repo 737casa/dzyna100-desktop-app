@@ -5,9 +5,9 @@
 
 > Nike Snkrs Checkout Assistant Electron Desktop Experiment
 
-### 🏠 Download - https://github.com/737casa/dzyna100-desktop-app/releases
+### 🏠 Docs - https://casa-7c-50-dzyna100-docs.web.app/
 
-### ✨ Demo - https://streamable.com/upsg8d
+### ✨ Video - https://streamable.com/upsg8d
 
 ## Install
 

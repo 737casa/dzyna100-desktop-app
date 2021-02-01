@@ -18,7 +18,7 @@ export default function Select2({get,...rest}:Select2Props){
     return (
         <Form.Control as="select" custom {...rest}>
             {data.map((f:any) => (
-                <option value={`__json${JSON.stringify(f)}`}>{f.name}</option>
+                <option value={`json__${JSON.stringify(f)}`}>{f.name}</option>
             ))}
         </Form.Control>
     )

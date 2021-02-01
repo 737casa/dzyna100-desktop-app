@@ -3,7 +3,7 @@ import React, {FC, useEffect, useState} from "react";
 import {createMenu} from "@7casa/clib22-helpers";
 import {browserApp, puppeteerMethods} from "../helpers";
 
-interface Puppeteer2AccountProps {
+export interface Puppeteer2AccountProps {
     name: string
     firstName:string
     lastName:string
@@ -23,24 +23,24 @@ export interface Puppeteer2ProductProps {
     account:Puppeteer2AccountProps
 }
 
-interface Puppeteer2OptionsProxyProps {
+export interface Puppeteer2OptionsProxyProps {
     ipAddress:string
     port:string
     username:string
     password:string
 }
 
-interface Puppeteer2OptionProxyRotate {
+export interface Puppeteer2OptionProxyRotate {
     rotate:boolean
 }
-interface Puppeteer2OptionProxySticky {
+export interface Puppeteer2OptionProxySticky {
     sticky:true
     session:"1"|"5"
 }
 
-type Puppeteer2OptionProxy = Puppeteer2OptionProxySticky | Puppeteer2OptionProxyRotate
+export type Puppeteer2OptionProxy = Puppeteer2OptionProxySticky | Puppeteer2OptionProxyRotate
 
-interface Puppeteer2Options {
+export interface Puppeteer2Options {
     headless:boolean
     proxy?: Puppeteer2OptionProxy
 }
@@ -50,17 +50,27 @@ interface Puppeteer2ListMenuFunctionProp {
     menu: string
 }
 
-type Puppeteer2ListMenuFunction = () => Puppeteer2ListMenuFunctionProp
+export type Puppeteer2ListMenuFunction = () => Puppeteer2ListMenuFunctionProp
 
-interface Puppeteer2ListProps {
+export interface Puppeteer2ListProps {
     menus: (string|Puppeteer2ListMenuFunction)[]
     authorise?: () => Promise<boolean>,
     getCode: (name:string) => () => Promise<string>
 }
 
-interface Puppeteer2Props {
+/**
+ * Create Puppeteer instance and
+ * returns function to call
+ * methods through {@link createPuppeteer2Method}
+ *
+ * @interface Puppeteer2Props
+ */
+export interface Puppeteer2Props {
+    /** Sneaker information */
     product:Puppeteer2ProductProps
+    /** Puppeteer options */
     options: Puppeteer2Options
+    /** Async function to get code from database */
     getCode: (name:string) => () => Promise<string>
 }
 
@@ -99,7 +109,15 @@ export function createPuppeteer2List({menus,getCode}:Puppeteer2ListProps){
     })
 }
 
-
+/**
+ * This is a simple member function.
+ *
+ * It should be inherited by all subclasses.
+ * @param {Puppeteer2Props} __namedParameters
+ * @param {Puppeteer2ProductProps} __namedParameters.options information.
+ * @param product Sneaker product information.
+ * @param {() => Promise<any>} __namedParameters.getCode get
+ */
 export function createPuppeteer2({product,options,getCode}:Puppeteer2Props){
 
 
